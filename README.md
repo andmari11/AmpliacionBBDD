@@ -1,4 +1,4 @@
-# Ampliación de Bade de Datos
+# Ampliación de Base de Datos
 - Data Base Conceptual Design. Normalization and Denormalization
 - Transactions and Concurrency Management
 - Connection and access to DBs.
