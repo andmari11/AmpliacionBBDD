@@ -29,7 +29,7 @@
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Acceder a las variables del formulario
-            $pass = $_POST['pass'];
+            $pass = $_POST['password'];
             $mail= $_POST['mail'];
 
             if(array_key_exists($mail, $array_user) && $array_user[$mail]==$pass){
