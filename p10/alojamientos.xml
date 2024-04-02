@@ -1,0 +1,22 @@
+<alojamientos>
+    <alojamiento tipo="hotel">
+        <cif>12345678A</cif>
+        <direccion>Calle Mayor, 1</direccion>
+        <telefono>987654321</telefono>
+        <habitaciones>
+            <habitacion id="1">
+                <precio>100</precio>
+                <estado est="disponible"/>
+            </habitacion>
+            <habitacion id="2">
+                <precio>150</precio>
+                <estado est="ocupado"/>
+            </habitacion>
+        </habitaciones>
+    </alojamiento>
+    <alojamiento tipo="casarural">
+        <cif>87654321B</cif>
+        <direccion>Plaza Menor, 2</direccion>
+        <telefono>123456789</telefono>
+    </alojamiento>
+</alojamientos>
