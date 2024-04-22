@@ -52,6 +52,13 @@ db.planetas.find({
 }, { Nombre: 1, _id: 0 })
 
 
+db.planetas.find({
+  Masa: { $lt: 3.2 } 
+
+}, { Nombre: 1, _id: 0 })
+
+
+
 
 db.planetas.updateOne(
   { Id: "C111" },
