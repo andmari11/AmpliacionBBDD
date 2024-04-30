@@ -1,0 +1,19 @@
+% Equipo (id_equipo, nombre_equipo)
+equipo(atm, 'Atlético de Madrid').
+equipo(bcn, 'Barcelona').
+equipo(rm, 'Real Madrid').
+equipo(sev, 'Sevilla').
+
+% Partido (id_partido, id_equipo_local, goles_local, id_equipo_visitante, goles_visitante, espectadores)
+itemPartido(1, atm, 1, rm, 0, 30).
+itemPartido(2, sev, 2, bcn, 0, 15).
+itemPartido(3, bcn, 1, atm, 1, 34).
+itemPartido(4, sev, 1, rm, 2, 11).
+itemPartido(5, atm, 3, sev, 0, 50).
+itemPartido(6, bcn, 1, rm, 2, 11).
+itemPartido(7, rm, 1, atm, 2, 32).
+itemPartido(8, bcn, 2, sev, 2, 14).
+itemPartido(9, atm, 3, bcn, 1, 29).
+itemPartido(10, rm, 1, sev, 3, 11).
+itemPartido(11, sev, 3, atm, 1, 55).
+itemPartido(12, rm, 1, bcn, 3, 10).

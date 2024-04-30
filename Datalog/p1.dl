@@ -28,7 +28,7 @@ matriculaciones(444, c1, 5, 2022).
 listado(N, Asig, A) :-
     estudiantes(Dni, N),
     matriculaciones(Dni, Cod, _, A),
-    asignatura(Cod, A, _).
+    asignatura(Cod, Asig, _).
 
 %//asignatura con más créditos
 creditos(Cre):- group_by(
@@ -43,15 +43,16 @@ asigCreditos(Asig):-
 
 %//Número de alumos matrículados por año
 numeroMatriculados(A,Num) :- group_by(
-    listado(A,N,_),
+    listado(N,_,A),
     [A],
     Num=count(N)
 ).
 
 %//Nombre de alumno con máxima nota para un año y asignatura
-notasAsigAnio( Asig, Anio, Nota) :- 
-    matriculaciones(_,cod, Nota, Anio),
-    asignatura(cod, Asig,_).
+notasAsigAnio(Asig, Anio, Nota) :-
+    asignatura(Cod, Asig, _),
+    matriculaciones(Nif, Cod, Nota, Anio).
+
 
 maximaNotaAsig(Anio,Asig,N):-group_by(
     notasAsigAnio(Asig,Anio,Nota),
@@ -59,19 +60,6 @@ maximaNotaAsig(Anio,Asig,N):-group_by(
     N=max(Nota)
 ).
 
-
-
-
-notasAsigAnio(Nombre, Asig, Anio, Nota) :- 
-    estudiantes(Dni, Nombre),
-    matriculaciones(Dni,cod, Nota, Anio),
-    asignatura(cod, Asig,_).
-
-maximaNotaAsig(Nombre Anio,Asig,N):-group_by(
-    notasAsigAnio(Nombre, Asig,Anio,Nota),
-    [Asig,Anio],
-    N=max(Nota)
-).
 
 
 

@@ -1,0 +1,79 @@
+%// Relación ticket: (Código del ticket, Código del producto, Unidades)
+ticket(111, 1, 2).
+ticket(111, 2, 3).
+ticket(111, 3, 1).
+ticket(222, 2, 1).
+ticket(222, 3, 2).
+ticket(333, 1, 3).
+ticket(333, 2, 1).
+ticket(333, 3, 2).
+ticket(444, 1, 2).
+ticket(444, 3, 1).
+ticket(555, 1, 4).
+ticket(555, 2, 3).
+ticket(555, 3, 2).
+ticket(555, 4, 1).
+ticket(555, 5, 5).
+
+%// Relación precio_por_unidad: (Código del producto, Precio por unidad)
+precio_por_unidad(1, 5).
+precio_por_unidad(2, 2).
+precio_por_unidad(3, 3).
+precio_por_unidad(4, 4).
+precio_por_unidad(5, 6).
+
+%//coste de cada ticket total
+coste_ticket(C, Total):- group_by(
+
+    ticket(C, Cod_prod, Unidades),
+    precio_por_unidad(Cod_prod, Precio),
+    [C],
+    Total=sum(Precio*Unidades)
+).
+
+%//ticket mas caro
+coste_mas_caro(Max):- group_by(
+    coste_ticket(_, Total),
+    [],
+    Max=max(Total)
+).
+ticket_mas_caro(C):-
+    coste_ticket(C, Total),
+    coste_mas_caro(Total).
+
+
+%//productos premium
+coste_medio_ticket(Coste_med):- group_by(
+    coste_ticket(_, Total),
+    [],
+    Coste_med=avg(Total)
+).
+tickets_premium(C):- 
+    coste_ticket(C,Total),
+    coste_medio_ticket(Coste_med),
+    Total>Coste_med.
+productos_premium(P):-
+    tickets_premium(C),
+    ticket(C,P,_).
+
+
+%//asociacion
+n_tickets(P,N):- group_by(
+    ticket(C,P,_),
+    [P],
+    N=count(C)
+).
+n_tickets_comunes(P1,P2,N):-  group_by(
+    ticket(C,P1,_),
+    ticket(C,P2,_),
+    P1\=P2,
+    [P1,P2],
+    N=count(C)
+).
+asociacion(P1,P2):-
+    n_tickets(P1,N1),
+    n_tickets_comunes(P1,P2,N2),
+    P1\=P2,
+    N2/N1>=0.7.
+
+    
