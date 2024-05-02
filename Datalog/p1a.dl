@@ -1,0 +1,53 @@
+%//estudiantes(código de estudiante, nombre).
+estudiantes(111, 'Pepe').
+estudiantes(222, 'Juan').
+estudiantes(333, 'Ana').
+estudiantes(444, 'Maria').
+estudiantes(555, 'Carlos').
+
+%//asignatura(código de la asignatura, nombre de la asignatura, número de créditos).
+asignatura(c1, 'Matemáticas', 25).
+asignatura(c2, 'Física', 25).
+asignatura(c3, 'Química', 10).
+
+%//matriculaciones(código de estudiante, código de la asignatura, nota, año de matriculación).
+matriculaciones(111, c1, 6, 2020).
+matriculaciones(111, c2, 7, 2020).
+matriculaciones(333, c1, 6, 2021).
+matriculaciones(444, c3, 9, 2021).
+matriculaciones(444, c2, 10, 2021).
+matriculaciones(444, c1, 5, 2020).
+matriculaciones(111, c3, 9, 2022).
+matriculaciones(333, c2, 10, 2022).
+matriculaciones(333, c3, 9, 2022).
+matriculaciones(555, c3, 9, 2022).
+matriculaciones(444, c2, 10, 2022).
+matriculaciones(444, c1, 5, 2022).
+
+listado(N,Asig,A):-
+    estudiantes(CodAlumno, N),
+    matriculaciones(CodAlumno, CodAsig, _, A),
+    asignatura(CodAsig, Asig,_).
+
+matriculaciones(A,Num):-group_by(
+    matriculaciones(CodAlumno, _, _, A),
+    [A],
+    Num=count(CodAlumno)
+).
+
+maximaNotaAsig(A,Asig,N):- group_by(
+    matriculaciones(_,CodAsig,Nota,A),
+    asignatura(CodAsig, Asig, _),
+    [A,Asig],
+    N=max(Nota)
+).
+
+
+creditosMax(CredMax):- group_by(
+    asignatura(_, _, Cred),
+    [],
+    CredMax=max(Cred)
+).
+asigCreditos(Asig):-
+    creditosMax(CredMax),
+    asignatura(_,Asig,CredMax).

@@ -1,10 +1,10 @@
-% Equipo (id_equipo, nombre_equipo)
+%//Equipo (id_equipo, nombre_equipo)
 equipo(atm, 'Atlético de Madrid').
 equipo(bcn, 'Barcelona').
 equipo(rm, 'Real Madrid').
 equipo(sev, 'Sevilla').
 
-% Partido (id_partido, id_equipo_local, goles_local, id_equipo_visitante, goles_visitante, espectadores)
+%//Partido (id_partido, id_equipo_local, goles_local, id_equipo_visitante, goles_visitante, espectadores)
 itemPartido(1, atm, 1, rm, 0, 30).
 itemPartido(2, sev, 2, bcn, 0, 15).
 itemPartido(3, bcn, 1, atm, 1, 34).
@@ -17,3 +17,43 @@ itemPartido(9, atm, 3, bcn, 1, 29).
 itemPartido(10, rm, 1, sev, 3, 11).
 itemPartido(11, sev, 3, atm, 1, 55).
 itemPartido(12, rm, 1, bcn, 3, 10).
+
+%//partidos
+partido(N1,G1,N2,G2):-
+    itemPartido(_, Cod1, G1, Cod2, G2,_),
+    equipo(Cod1, N1),
+    equipo(Cod2, N2).
+
+%//empate
+empate(P, N1, N2):-
+    itemPartido(P,Cod1,G1,Cod2,G2,_),
+    equipo(Cod1, N1),
+    equipo(Cod2, N2),
+    G1=G2.
+
+%//asistencia total
+asistenciaTotal(S):-group_by(
+    itemPartido(_,_,_,_,_,Asistentes),
+    [],
+    S=sum(Asistentes)
+).
+
+%//numero de victorias locales
+numeroVictoriasLocales(L):-group_by(
+    itemPartido(P,_,G1,_,G2,_),
+    G1>G2,
+    [],
+    L=count(P)
+).
+
+%//asistenciaMediaEquipoLocal
+asistenciaMediaEquipoLocal(Id1, M):-group_by(
+    itemPartido(_,Id1,_,_,_,Asistentes),
+    [Id1],
+    M=sum(Asistentes)/count(Id1)
+).
+
+%//asistenciaMediaEquipoLocal+Nombre
+asistenciaMediaEquipoLocalNombre(N,M):-
+    asistenciaMediaEquipoLocal(Id1, M),
+    equipo(Id1,N).

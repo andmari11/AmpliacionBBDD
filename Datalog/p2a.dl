@@ -1,0 +1,23 @@
+%// Relación ticket: (Código del ticket, Código del producto, Unidades)
+ticket(111, 1, 2).
+ticket(111, 2, 3).
+ticket(111, 3, 1).
+ticket(222, 2, 1).
+ticket(222, 3, 2).
+ticket(333, 1, 3).
+ticket(333, 2, 1).
+ticket(333, 3, 2).
+ticket(444, 1, 2).
+ticket(444, 3, 1).
+ticket(555, 1, 4).
+ticket(555, 2, 3).
+ticket(555, 3, 2).
+ticket(555, 4, 1).
+ticket(555, 5, 5).
+
+%// Relación precio_por_unidad: (Código del producto, Precio por unidad)
+precio_por_unidad(1, 5).
+precio_por_unidad(2, 2).
+precio_por_unidad(3, 3).
+precio_por_unidad(4, 4).
+precio_por_unidad(5, 6).
