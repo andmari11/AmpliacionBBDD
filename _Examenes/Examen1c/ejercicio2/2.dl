@@ -1,0 +1,99 @@
+//usuario(cod_usuario,nombre)
+usuario(1,pepe).
+usuario(2,juan).
+usuario(3,ana).
+
+%//linea(cod_telefono,telefono)
+linea(1,1111).
+linea(2,2222).
+linea(2,3333).
+linea(3,4444).
+linea(3,5555).
+linea(3,6666).
+linea(3,7777).
+
+%//llamada(cod_llamada,telefono,segundos,dia,mes,anio)
+llamada(1,1111,23,1,1,2022).
+llamada(2,1111,3,2,1,2022).
+llamada(3,1111,21,5,1,2023).
+llamada(4,1111,32,10,1,2023).
+llamada(5,1111,23,1,2,2023).
+llamada(6,1111,3,2,2,2023).
+llamada(7,1111,21,5,2,2023).
+llamada(8,1111,32,10,2,2023).
+
+llamada(9,2222,45,2,10,2023).
+llamada(10,2222,101,5,10,2023).
+llamada(11,3333,822,10,11,2023).
+llamada(12,2222,45,2,9,2023).
+llamada(13,2222,101,5,9,2023).
+llamada(14,3333,12,10,11,2023).
+
+llamada(15,4444,45,2,10,2022).
+llamada(16,5555,101,5,10,2022).
+llamada(17,5555,1,10,11,2022).
+llamada(18,6666,45,2,10,2022).
+llamada(19,6666,101,5,10,2022).
+llamada(20,6666,2322,10,11,2022).
+
+
+%1
+coste_llamada(Codigo, L, Coste, M, A) :- 
+    llamada(Codigo, L, X,_ , M, A),
+    X < 30,
+    Coste is X * 0.02.
+coste_llamada(Codigo, L, Coste, M, A) :- 
+    llamada(Codigo, L, X,_ , M, A), 
+    X >= 30, X < 60, 
+    Coste is X * 0.01.
+coste_llamada(Codigo, L, Coste, M, A) :- 
+    llamada(Codigo, L, X,_ , M, A), 
+    X >= 60, 
+    Coste is X * 0.005.
+
+factura_linea(L, Cost, M, A) :- group_by(
+    coste_llamada(Cod, L, Coste, M, A),
+    [L, M, A],
+    Cost is sum(Coste)
+).
+
+%2
+factura_usuario(Nombre,Cost, M, A):- group_by(
+    usuario(Id_usuario, Nombre),
+    linea(Id_usuario, N_telefono),
+    factura_linea(N_telefono,Coste,M,A),
+    [Nombre, M, A],
+    Cost=sum(Coste)
+).
+
+%3
+llamadasLinea(L,Llamadas):- group_by(
+    llamada(Cod,L,_,_,_,_),
+    [L],
+    Llamadas=count(Cod)
+).
+
+llamadasMax(Llamadas):- group_by(
+    llamadasLinea(_,Llamadas_v),
+    [],
+    Llamadas=max(Llamadas_v)
+).
+
+linea_max(L):-
+    llamadasMax(Llamadas),
+    llamadasLinea(L,Llamadas).
+
+
+%4
+media_duracion(Med):-group_by(
+    llamada(_,_,Segundos,_,_,_),
+    [],
+    Med=avg(Segundos)
+).
+
+usuarios_lineas_defectuosas(Nombre, L):-
+    usuario(Id_usuario, Nombre),
+    linea(Id_usuario, L),
+    llamada(_,L,Segundos,_,_,_),
+    media_duracion(Med),
+    Segundos>3*Med.

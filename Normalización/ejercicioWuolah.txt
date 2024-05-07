@@ -1,0 +1,13 @@
+1. Tabla clínicas:
+(Código-clínica Nombre-clínica Número de miembros Ciudad País)
+2. Tabla visitas:
+(Código-paciente Fecha Nombre-médico Coste Nombre-paciente)
+3. Tabla intervenciones quirúrgicas:
+(Código-paciente Fecha Nombre-médico Nombre-paciente Ciudad-paciente País-paciente)
+
+Solución:
+clinicas(Código-clínica, Nombre-clínica, Número de miembros, Ciudad, País)
+visitas(Código-paciente, Fecha, Nombre-médico, Coste)
+intervenciones-quirúrgicas(Código-paciente, Fecha, Nombre-médico)
+pacientes(Código-paciente,Nombre-paciente, Ciudad-paciente País-paciente)
+

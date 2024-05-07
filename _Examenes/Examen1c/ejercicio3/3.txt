@@ -1,0 +1,17 @@
+Enunciado:
+Tabla 1: hoteles(cod-hotel,nombre,direccion,ciudad,nif-administrador,telf-administrador)
+Tabla 2: estancias-habitaciones(cod-hotel,num-habitaci ́on,fecha,nif-cliente,d ́ıas,tipo-habitacion)
+
+Hotel(cod-hotel,nombre,direccion,ciudad, nif-administrador)
+Administrador(nif-administrador,telf-administrador)
+Habitacion(cod-hotel,num-habitacion,tipo-habitacion)
+Estancia(cod-hotel,num-habitacion, fecha,nif-cliente,dias)
+
+
+Hotel(cod-hotel,nombre,direccion,ciudad)
+Administrador(nif-administrador,telf-administrador)
+Hotel-Administracion(cod-hotel, nif-administrador)
+Habitacion(cod-hotel,num-habitacion,tipo-habitacion)
+Estancia(cod-hotel,num-habitacion, fecha,nif-cliente,dias)
+
+
