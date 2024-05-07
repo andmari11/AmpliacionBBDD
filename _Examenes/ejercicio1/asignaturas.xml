@@ -1,0 +1,20 @@
+<!--
+<!ELEMENT asignaturas (asignatura+)>
+<!ELEMENT asignatura (nombre, profesor?)>
+<!ELEMENT nombre (#PCDATA)>
+<!ELEMENT profesor EMPTY>
+<!ATTLIST asignatura cod CDATA #REQUIRED>
+<!ATTLIST profesor nif CDATA #REQUIRED>
+-->
+
+
+<asignaturas>
+    <asignatura cod="aaa">
+        <nombre> Mates</nombre>
+        <profesor nif="333"/>
+    </asignatura>
+    <asignatura cod="bbb">
+        <nombre> Lengua</nombre>
+        <profesor nif="444"/>
+    </asignatura>
+</asignaturas>

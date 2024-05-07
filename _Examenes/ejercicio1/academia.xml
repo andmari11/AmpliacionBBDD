@@ -1,0 +1,35 @@
+<!--
+<!ELEMENT academia (alumno+)>
+<!ELEMENT alumno (asignatura+)>
+<!ELEMENT asignatura (nota+)>
+<!ELEMENT nota (#PCDATA)>
+<!ATTLIST alumno nif CDATA #REQUIRED>
+<!ATTLIST asignatura cod CDATA #REQUIRED>
+-->
+
+<academia>
+    <alumno nif="111">
+        <asignatura cod="aaa">
+            <nota> 10</nota>
+            <nota> 8</nota>
+            <nota> 7</nota>
+        </asignatura>
+        <asignatura cod="bbb">
+            <nota> 10</nota>
+            <nota> 8</nota>
+            <nota> 7</nota>
+        </asignatura>
+    </alumno>
+    <alumno nif="222">
+        <asignatura cod="aaa">
+            <nota> 3</nota>
+            <nota> 4</nota>
+            <nota> 7</nota>
+        </asignatura>
+        <asignatura cod="bbb">
+            <nota> 4</nota>
+            <nota> 5</nota>
+            <nota> 7</nota>
+        </asignatura>
+    </alumno>
+</academia>
