@@ -115,7 +115,7 @@ db.componentes.updateOne(
 db.componentes.updateOne(
 
     {"Nombre Cliente": "PC fine"},
-    {$pop:{"Ensamblado":1}}
+    {$pop:{"Ensamblado":-1}}//elimina el primero -1, elimina el ultimo 1
 );
 
 //5

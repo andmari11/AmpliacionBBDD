@@ -46,7 +46,7 @@ db.planetas.insertMany([
 
 db.planetas.find({
   $or: [
-    { Composicion: { $in: ['H', 'N'] } },
+    { Composicion: { $in: ['H', 'N'] } },//$all todos los elementos
     { Masa: { $gt: 3.2 } }
   ]
 }, { Nombre: 1, _id: 0 })

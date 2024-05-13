@@ -1,3 +1,24 @@
+1. Tabla vehiculos: (matrícula, modelo, marca, nif-cliente, nombre-cliente, apellidos-cliente)
+2. Tabla reparaciones: (matrícula, fecha-reparacion, matricula, horas-reparacion, coste, codigo-taller, localidad-taller, provincia-taller)
+
+vehiculo(matricula, modelo, nif-cliente)
+modelo(modelo, marca)
+cliente(nif-cliente,nombre-cliente, apellidos-cliente)
+reparacion(matricula, fecha-reparacion, horas, coste, codigo-taller)
+taller(codigo, localidad, provincia)
+
+
+
+1. Tabla hoteles:(cod-hotel, nombre, direccion, ciudad, nif-administrador, telf-administrador)
+2. Tabla estancias-habitaciones:(cod-hotel, num-habitacion, fecha, nif-cliente, días, tipo-habitacion)
+
+hotel(cod-hotel, nombre, direccion, ciudad, nif-administrador)
+administrador(nif-administrador, telf-administrador)
+habitacion(cod-hotel, num-habitacion, tipo-habitacion)
+reserva(cod-hotel, num-habitacion,  fecha, nif-cliente, días)
+
+
+
 1. Tabla clínicas:
 (Código-clínica Nombre-clínica Número de miembros Ciudad País)
 2. Tabla visitas:
@@ -5,9 +26,8 @@
 3. Tabla intervenciones quirúrgicas:
 (Código-paciente Fecha Nombre-médico Nombre-paciente Ciudad-paciente País-paciente)
 
-Solución:
-clinicas(Código-clínica, Nombre-clínica, Número de miembros, Ciudad, País)
-visitas(Código-paciente, Fecha, Nombre-médico, Coste)
-intervenciones-quirúrgicas(Código-paciente, Fecha, Nombre-médico)
-pacientes(Código-paciente,Nombre-paciente, Ciudad-paciente País-paciente)
+cliente(codigo-paciente, nombre-cliente)
+clinica(Código-clínica Nombre-clínica Número de miembros Ciudad País)
+visita(Código-paciente Fecha Nombre-médico Coste)
+intervenciones(codigo-paciente,fecha, nombre-medico)
 

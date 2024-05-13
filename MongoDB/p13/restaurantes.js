@@ -43,17 +43,17 @@ db.catalogo.updateMany(
 //5
 db.catalogo.updateOne(
     { codigo: 1 },
-    { $push: { valoraciones: 3 } }
+    { $push: { valoraciones: 3 } }//empuja o crea un sólo valor
 )
 
 db.catalogo.updateOne(
     { codigo: 2 },
-    { $push: { valoraciones: {$each: [3, 4, 5]} } }
+    { $push: { valoraciones: {$each: [3, 4, 5]} } }//empuja o crea varios valores
 )
 
 db.catalogo.updateOne(
     { codigo: 3 },
-    { $set: { valoraciones: [4, 5, 5] } }
+    { $set: { valoraciones: [4, 5, 5] } }//crea
 )
 
 db.catalogo.updateOne(
