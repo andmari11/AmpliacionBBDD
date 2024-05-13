@@ -1,0 +1,85 @@
+%//venta(cod-vendedor,ciudad,provincia,mes,año,cantidad)
+
+ventas(111,madrid,madrid,11,2023,100).
+ventas(111,madrid,madrid,10,2023,1000).
+ventas(111,madrid,madrid,11,2023,1400).
+ventas(111,getafe,madrid,11,2023,1020).
+ventas(222,getafe,madrid,11,2023,100).
+ventas(222,leganes,madrid,11,2023,3000).
+ventas(222,toledo,toledo,11,2023,1500).
+ventas(222,toledo,toledo,11,2023,1200).
+ventas(222,talavera,toledo,11,2023,3000).
+ventas(222,talavera,toledo,11,2023,8000).
+ventas(222,avila,avila,11,2023,17000).
+ventas(222,avila,avila,11,2023,10).
+ventas(222,avila,avila,11,2023,180).
+ventas(222,madrid,madrid,11,2023,71000).
+ventas(222,madrid,madrid,10,2023,14000).
+ventas(111,madrid,madrid,11,2023,1070).
+ventas(111,getafe,madrid,11,2023,130).
+ventas(333,getafe,madrid,11,2023,800).
+ventas(333,leganes,madrid,11,2023,500).
+ventas(333,toledo,toledo,11,2023,300).
+ventas(333,toledo,toledo,11,2022,1300).
+ventas(333,talavera,toledo,11,2022,31000).
+ventas(333,talavera,toledo,11,2022,12000).
+ventas(333,avila,avila,11,2022,1000).
+ventas(333,avila,avila,11,2022,150).
+ventas(333,avila,avila,11,2022,160).
+ventas(333,madrid,madrid,11,2022,90).
+ventas(333,madrid,madrid,10,2022,6000).
+ventas(333,madrid,madrid,11,2022,8000).
+ventas(333,getafe,madrid,11,2022,3000).
+ventas(333,getafe,madrid,11,2022,60).
+ventas(444,leganes,madrid,11,2022,700).
+ventas(444,toledo,toledo,11,2022,900).
+ventas(444,toledo,toledo,11,2022,1000).
+ventas(444,talavera,toledo,11,2022,11000).
+ventas(444,talavera,toledo,11,2022,13000).
+ventas(444,avila,avila,11,2022,15000).
+ventas(444,avila,avila,11,2022,17000).
+ventas(444,avila,avila,11,2022,13000).
+
+%//vendedores(Cod,N).
+vendedores(111,juan).
+vendedores(222,maria).
+vendedores(333,antonio).
+vendedores(444,ana).
+vendedores(555,pedro).
+vendedores(666,isabel).
+
+ventas_totales(V):- group_by(
+
+    ventas(_,_,_,_,_,VentaMa),
+    [],
+    V=sum(VentaMa)
+).
+
+ventas_por_vendedor(N,V):-group_by(
+    vendedores(Cod, N),
+    ventas(Cod,_,_,_,_,VentaMA),
+    [N],
+    V=sum(VentaMA)
+).
+
+venta_mas_alta_provincia(P,C):-group_by(
+    ventas(_,_,P,_,_,VentaMA),
+    [P],
+    C=max(VentaMA)
+).
+
+suma_venta_provincia(Cod,P,Suma):-group_by(
+    ventas(Cod,_,P,_,_,VentaMA),
+    [Cod,P],
+    Suma=sum(VentaMA)
+).
+mejor_suma_venta_provincia(P,Max):-group_by(
+    suma_venta_provincia(_,P,Suma),
+    [P],
+    Max=max(Suma)
+).
+
+
+mejor_vendedor_provincia(P,C):-
+    mejor_suma_venta_provincia(P,Max),
+    suma_venta_provincia(C,P,Max). 

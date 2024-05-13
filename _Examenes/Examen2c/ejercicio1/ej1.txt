@@ -3,12 +3,9 @@ Tabla 2: trayectos(origen, destino, hora-salida, cod-autobus, nif-conductor, nom
 Tabla 3: plazas-trayectos(origen, destino, hora-salida, num-plaza, cod-autobus, tipo-de-plaza, libre)
 
 
-Solución:
 lineas(origen, destino, numero-trayectos-diarios)
-
-trayecto(origen,destino,hora-salida,cod-autobus)
-bus(cod-autobus,año-de-compra)
-conductor(nif-conductor, nombre-conductor,cod-autobus)
-
-plazas-trayectos(hora-salida, origen, destino, num-plaza, libre)
-autobus-plazas(cod-autobus, num-plaza,  tipo-de-plaza)
+trayectos(origen, destino, hora-salida, cod-autobus)
+autobus(cod-autobus, año de compra, nif-conductor)
+conductor(nif, nombre)
+plazas-trayectos(origen, destino, hora-salida, num-plaza, libre)
+plazas(num-plaza, cod-autobus, tipo-de-plaza)

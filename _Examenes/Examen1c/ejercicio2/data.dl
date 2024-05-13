@@ -1,0 +1,103 @@
+%usuario(cod_usuario,nombre)
+
+usuario(1,pepe).
+usuario(2,juan).
+usuario(3,ana).
+
+%linea(cod_telefono,telefono)
+linea(1,1111).
+linea(2,2222).
+linea(2,3333).
+linea(3,4444).
+linea(3,5555).
+linea(3,6666).
+linea(3,7777).
+
+%llamada(cod_llamada,telefono,segundos,dia,mes,anio)
+llamada(1,1111,23,1,1,2022).
+llamada(2,1111,3,2,1,2022).
+llamada(3,1111,21,5,1,2023).
+llamada(4,1111,32,10,1,2023).
+llamada(5,1111,23,1,2,2023).
+llamada(6,1111,3,2,2,2023).
+llamada(7,1111,21,5,2,2023).
+llamada(8,1111,32,10,2,2023).
+
+llamada(9,2222,45,2,10,2023).
+llamada(10,2222,101,5,10,2023).
+llamada(11,3333,822,10,11,2023).
+llamada(12,2222,45,2,9,2023).
+llamada(13,2222,101,5,9,2023).
+llamada(14,3333,12,10,11,2023).
+
+llamada(15,4444,45,2,10,2022).
+llamada(16,5555,101,5,10,2022).
+llamada(17,5555,1,10,11,2022).
+llamada(18,6666,45,2,10,2022).
+llamada(19,6666,101,5,10,2022).
+llamada(20,6666,2322,10,11,2022).
+
+
+coste(Cod,Coste):-
+    llamada(Cod,_,Tiempo,_,_,_),
+    Tiempo<30,
+    Coste=Tiempo*0.02.
+
+coste(Cod,Coste):-
+    llamada(Cod,_,Tiempo,_,_,_),
+    Tiempo>60,
+    Coste=Tiempo*0.005.
+
+coste(Cod,Coste):-
+    llamada(Cod,_,Tiempo,_,_,_),
+    Tiempo>30,
+    Tiempo<60,
+    Coste=Tiempo*0.01.
+
+
+factura_linea(L,Cost,M,A):-group_by(
+
+    llamada(Cod,L,_,_,M,A),
+    coste(Cod,C),
+    [L,M,A],
+    Cost=sum(C)
+).
+
+
+factura_usuario(Nombre, Cost, M, A):-
+    factura_linea(L,Cost,M,A),
+    linea(Cod, L),
+    usuario(Cod,Nombre).
+
+
+n_llamadas(L,N):-group_by(
+
+    llamada(Cod,L,_,_,_,_),
+    [L],
+    N=count(Cod)
+).
+max_llamadas(Max):- group_by(
+    n_llamadas(_,N),
+    [],
+    Max=max(N)
+).
+
+linea_max(L):-
+    max_llamadas(N),
+    n_llamadas(L,N).
+
+
+duracion_media(M):-group_by(
+
+    llamada(_,_,D,_,_,_),
+    [],
+    M=avg(D)
+).
+
+
+usuarios_lineas_defectuosas(Nombre,L):-
+    llamada(_,L,D,_,_,_),
+    duracion_media(M),
+    D>M*3,
+    linea(Cod, L),
+    usuario(Cod,Nombre).

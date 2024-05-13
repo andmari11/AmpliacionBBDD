@@ -1,0 +1,41 @@
+DATALOG:
+Cómo arrancar Datalog en los laboratorios. En el menú principal vamos a 'Todos los programas'/BBDD/Datalog Educational System y ejecutamos DES.
+
+Con cualquier editor de texto editamos nuestro programa.  Si nuestro programa está en hlocal/prueba y se llama "pgm.dl", lo cargamos ejecutando: 
+/consult c:/hlocal/prueba/pgm.dl
+A continuación ya podemos lanzar los objetivos que queramos.
+
+
+MONGODB:
+Cómo arrancar mongoDB en los laboratorios.
+
+En el menú principal vamos a 'Todos los programas'/BBDD/MongoDB y ejecutamos Servidor MongoDB y EntornoMongoDB.
+
+En entorno 'EntornoMongoDB' tecleamos mongosh y ya lo tenemos listo
+
+XML:
+Cómo arrancar eXistDB en los laboratorios:
+
+En el menú principal vamos a 'Todos los programas'/BBDD/eXistDB Database y ejecutamos eXistDB Database.
+
+A continuación, abrimos el navegador y escribimos la dirección: http://localhost:8080/exist
+
+Información para el 'login':
+
+    Usuario: admin
+    Contraseña: ninguna
+
+
+
+PHP:
+Para ejecutar una página con PHP es preciso tener activado Apache:
+
+En los laboratorios vamos a “Menú de inicio > Todos lo programas > Programación > Programación para Web > Arranque Apache”.
+
+Si queremos que nuestra página tenga acceso a mysql, en la misma ruta es preciso ejecutar Arranque MySQL
+
+Colocamos nuestra página en el directorio ‘htdocs’.  En el laboratorio este directorio se abre haciendo click en “Apache - DIR htdocs” que se encuentra en la misma ruta que el punto anterior.  Si no se abre a través de este acceso, no funcionará.
+
+Para arrancar la interfaz de SQL de XAMPP escribe en el navegador http://localhost/phpmyadmin/
+
+Abrimos el navegador y escribimos localhost/tupagina.php o localhost/tupagina.html.
